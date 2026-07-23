@@ -1,0 +1,14 @@
+:root {
+    --font-serif: 'Roboto', sans-serif;
+}
+
+.title-home, .welcome, .post-title {
+    font-family: "Merriweather", serif !important;
+    font-weight: bold;
+}
+
+p, a, span, .navlink {
+    font-family: var(--font-serif) !important;
+    font-weight: 400;
+    color: #605C59;
+}
