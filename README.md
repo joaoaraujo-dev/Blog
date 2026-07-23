@@ -2,6 +2,8 @@
 
 A personal blog project built with PHP and the Laravel framework. It features a comments section and an administrative dashboard where you can view statistics and manage the website.
 
+<img width="1920" height="1080" alt="MyBlog" src="https://github.com/user-attachments/assets/a8483dd3-2a96-4e9b-ba90-45be86b73984" />
+
 ## Technologies Used
 
 - PHP
