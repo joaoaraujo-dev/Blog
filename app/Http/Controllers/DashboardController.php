@@ -10,17 +10,17 @@ use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function index(): View {
+    public function index(): View
+    {
         $stats = [
-            "n_users" => User::all()->count(),
-            "n_posts" => Post::all()->count(),
-            "n_comments" => Comment::all()->count()
+            "n_users" => User::count(),
+            "n_posts" => Post::count(),
+            "n_comments" => Comment::count(),
         ];
 
-        //obtains information about the users for the graph.
         $userData = User::select([
             DB::raw("MONTH(created_at) as month"),
-            DB::raw("COUNT(*) as total")
+            DB::raw("COUNT(*) as total"),
         ])
         ->groupBy(DB::raw("MONTH(created_at)")) 
         ->orderBy("month", "asc")
@@ -41,7 +41,7 @@ class DashboardController extends Controller
             12 => 'Dezembro'
         ];
 
-        foreach($userData as $data) {
+        foreach ($userData as $data) {
             $month[] = $nameMonths[$data->month];
             $total[] = $data->total;
         }

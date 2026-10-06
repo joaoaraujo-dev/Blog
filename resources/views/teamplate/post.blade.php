@@ -169,7 +169,7 @@
                  <h2>Comentários</h2>
 
                  @auth
-                 <form action="{{ route("comment", $post->title) }}" method="POST">
+                 <form action="{{ route("comment", $post->slug) }}" method="POST">
                      @csrf
                      @yield("makeComment")
                  </form>

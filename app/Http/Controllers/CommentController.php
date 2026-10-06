@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 
 class CommentController extends Controller
 {
-    public function MakeComment(Request $request, string $title): RedirectResponse {
-        $post = Post::where("title", $title)->firstOrFail();
-      
-        $comment = $request->only("comment");
-        $comment["post_id"] = $post->id;
-        $comment["user_id"] = auth()->id();
+    public function makeComment(Request $request, string $slug): RedirectResponse
+    {
+        $post = Post::where("slug", $slug)->firstOrFail();
+        $validated = $request->validate([
+            "comment" => ["required", "string"],
+        ]);
 
-        Comment::create($comment);
+        $post->comments()->create([
+            "comment" => $validated["comment"],
+            "user_id" => $request->user()->id,
+        ]);
 
-        return redirect()->back()->with("sucesss", "Comentário enviado com sucesso");
+        return redirect()->back()->with("success", "Comentário enviado com sucesso");
     }
 }
